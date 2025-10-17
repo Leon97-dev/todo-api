@@ -49,8 +49,7 @@ Test1.get('/health', (req, res) => {
 Test1.get(
   '/champions',
   (req, res, next) => {
-    // ← 미들웨어 하나 끼워서
-    console.log('HIT /champions'); //    경로 매칭 확인
+    console.log('REQ', req.method, req.path);
     next();
   },
   asyncHandler(async (req, res) => {
