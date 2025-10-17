@@ -1,4 +1,4 @@
-// Test_01 : 롤 챔프 API > DB
+// Test_01.js : 롤 챔프 API > DB
 
 import express from 'express';
 import mongoose from 'mongoose';

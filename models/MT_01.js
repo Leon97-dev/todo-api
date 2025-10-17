@@ -1,4 +1,4 @@
-// MT_01 : 롤 챔프 소개 Schema
+// MT_01.js : 롤 챔프 소개 Schema
 
 import mongoose from 'mongoose';
 

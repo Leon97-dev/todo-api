@@ -1,4 +1,4 @@
-// DT_01 : 롤 챔프 목록 seed data
+// DT_01.js : 롤 챔프 목록 seed data
 
 const data = [
   {

@@ -1,3 +1,5 @@
+// ST_01.js : seed
+
 import mongoose from 'mongoose';
 import data from './DT_01.js';
 import MT1 from '../models/MT_01.js'; // ← 상위 폴더면 경로 수정
