@@ -19,6 +19,7 @@ mongoose
 // Express 기본 설정
 // =======================
 const Test1 = express();
+Test1.use(cors({ origin: '*' }));
 Test1.use(cors());
 Test1.use(express.json());
 
