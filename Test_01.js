@@ -20,7 +20,6 @@ mongoose
 // =======================
 const Test1 = express();
 Test1.use(cors({ origin: '*' }));
-Test1.use(cors());
 Test1.use(express.json());
 
 // =======================
