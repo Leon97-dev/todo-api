@@ -32,14 +32,28 @@ function asyncHandler(handler) {
   };
 }
 
+// 루트 안내용 (Render 동작 확인)
+Test1.get('/', (req, res) => {
+  res.json({
+    message: '✅ Server is running on Render!',
+    endpoints: ['/champions', '/champions/:id', '/health'],
+    time: new Date().toISOString(),
+  });
+});
+
+// (선택) 헬스체크
+Test1.get('/health', (req, res) => {
+  res.json({ ok: true });
+});
+
 Test1.get(
   '/champions',
   asyncHandler(async (req, res) => {
-    const sort = req.query.sort;
-    const count = Number(req.query.count) || 0;
-    const sortOption = { createdAt: sort === 'oldest' ? 'asc' : 'desc' };
-    const result = await MT1.find().sort(sortOption).limit(count);
+    const { sort, count } = req.query;
+    const limitNum = Math.max(parseInt(count ?? '0', 10) || 0, 0);
+    const sortOption = { createdAt: sort === 'oldest' ? 1 : -1 }; // asc/desc 대신 1/-1
 
+    const result = await MT1.find().sort(sortOption).limit(limitNum).lean();
     res.send(result);
   })
 );
