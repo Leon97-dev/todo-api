@@ -48,13 +48,18 @@ Test1.get('/health', (req, res) => {
 
 Test1.get(
   '/champions',
+  (req, res, next) => {
+    // ← 미들웨어 하나 끼워서
+    console.log('HIT /champions'); //    경로 매칭 확인
+    next();
+  },
   asyncHandler(async (req, res) => {
     const { sort, count } = req.query;
     const limitNum = Math.max(parseInt(count ?? '0', 10) || 0, 0);
-    const sortOption = { createdAt: sort === 'oldest' ? 1 : -1 }; // asc/desc 대신 1/-1
+    const sortOption = { createdAt: sort === 'oldest' ? 1 : -1 };
 
     const result = await MT1.find().sort(sortOption).limit(limitNum).lean();
-    res.send(result);
+    res.json(result);
   })
 );
 
