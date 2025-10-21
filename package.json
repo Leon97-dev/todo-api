@@ -10,8 +10,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon Test_01.js",
-    "start": "node Test_01.js",
-    "seed": "node data/ST_01.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "seed": "node data/seed.js"
   }
 }

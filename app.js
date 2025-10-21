@@ -1,11 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
-//
 import * as dotenv from 'dotenv';
 dotenv.config();
-//
 import cors from 'cors';
-//
 import Task from './models/task.js';
 
 //------------------------------------------------------------------------------------------------
@@ -17,13 +14,6 @@ mongoose
 
 const app = express();
 app.use(cors());
-/* 
-const corsOptions = {
-  origin: ['http://127.0.0.1:3000', 'https://my-todo.com'],
-};
-
-app.use(cors(corsOptions));
-*/
 app.use(express.json());
 
 //------------------------------------------------------------------------------------------------

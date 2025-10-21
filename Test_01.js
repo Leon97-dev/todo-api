@@ -1,5 +1,4 @@
 // Test_01.js : 롤 챔프 API > DB
-
 import express from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
@@ -7,24 +6,18 @@ dotenv.config();
 import cors from 'cors';
 import MT1 from './models/MT_01.js';
 
-// =======================
 // MongoDB 연결
-// =======================
 mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => console.log('Connected to DB'))
   .catch((err) => console.error('Mongo connect error:', err));
 
-// =======================
 // Express 기본 설정
-// =======================
 const Test1 = express();
 Test1.use(cors({ origin: '*' }));
 Test1.use(express.json());
 
-// =======================
 // 에러 핸들링용 async wrapper
-// =======================
 function asyncHandler(handler) {
   return async function (req, res) {
     try {
@@ -41,17 +34,13 @@ function asyncHandler(handler) {
   };
 }
 
-// =======================
 // 전역 요청 로거 (모든 요청 로그 확인)
-// =======================
 Test1.use((req, res, next) => {
   console.log('REQ', req.method, req.path);
   next();
 });
 
-// =======================
 // 루트 안내 (Render 연결 확인용)
-// =======================
 Test1.get('/', (req, res) => {
   res.json({
     message: '✅ Server is running on Render!',
@@ -66,23 +55,17 @@ Test1.get('/', (req, res) => {
   });
 });
 
-// =======================
 // 헬스체크용 라우트
-// =======================
 Test1.get('/health', (req, res) => {
   res.json({ ok: true });
 });
 
-// =======================
 // /champions 프리픽스 확인용 ping
-// =======================
 Test1.get('/champions/ping', (req, res) => {
   res.json({ ok: true, now: new Date().toISOString() });
 });
 
-// =======================
 // 등록된 라우트 확인용 (디버그 전용)
-// =======================
 Test1.get('/__routes', (req, res) => {
   const routes = [];
   Test1._router.stack.forEach((m) => {
@@ -94,9 +77,7 @@ Test1.get('/__routes', (req, res) => {
   res.json(routes);
 });
 
-// =======================
 // 실제 챔피언 API
-// =======================
 Test1.get(
   '/champions',
   asyncHandler(async (req, res) => {
@@ -161,7 +142,5 @@ Test1.delete(
   })
 );
 
-// =======================
 // 서버 시작
-// =======================
 Test1.listen(process.env.PORT || 3000, () => console.log('Server Started'));

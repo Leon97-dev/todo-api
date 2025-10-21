@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import data from './mock.js';
+import data from './seedData.js';
 import Task from '../models/task.js';
 //
 import * as dotenv from 'dotenv';
